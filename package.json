@@ -1,0 +1,21 @@
+{
+  "name": "pi3-node-pusher",
+  "version": "1.0.0",
+  "description": "a test project to checkout pusher pi and nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pi3",
+    "pusher",
+    "nodejs"
+  ],
+  "author": "NH Evan",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "content-disposition": "^0.5.2",
+    "express": "^4.15.2"
+  }
+}
