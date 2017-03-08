@@ -9,20 +9,26 @@ function processIncomingPush(data){
 	console.log(data);
 }
 
-module.exports = {
-  preparePusher: function (){
+function preparePusher(){
 	console.log('preparing pusher ...');
 	var pusher = new Pusher(pusher_app_key, {
 		cluster: 'ap1',
 		encrypted: true
 	});
 	return pusher;
-},
-  subscribeToChannel: function (pusher){
+}
+
+function subscribeToChannel(pusher){
 	var channel = pusher.subscribe(channel_name);
 	console.log('listening for updates from server ...');
 	channel.bind(event_name, function(data) {
 		processIncomingPush(data);
 	});
 }
+
+module.exports = {
+	startListeningToPusher: function (){
+		var pusher = preparePusher();
+		subscribeToChannel(pusher);
+	}
 };

@@ -4,10 +4,7 @@ var alarms = require('./alarms');
 
 var app = express();
 
-startListeningToPusher();
+pi3_pusher.startListeningToPusher();
 alarms.setupAlarms();
 
-function startListeningToPusher(){
-	var pusher = pi3_pusher.preparePusher();
-	pi3_pusher.subscribeToChannel(pusher);
-}
+
