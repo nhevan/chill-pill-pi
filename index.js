@@ -16,7 +16,7 @@ function startListeningToPusher(){
 }
 
 function preparePusher(){
-	console.log('preparing ...');
+	console.log('preparing pusher ...');
 	var pusher = new Pusher(pusher_app_key, {
 		cluster: 'ap1',
 		encrypted: true
@@ -33,15 +33,24 @@ function subscribeToChannel(pusher){
 }
 
 function processIncomingPush(data){
+	console.log("Received new updates from server ...");
 	console.log(data);
 }
 
 function setupAlarms(){
 	console.log('preparing for alarm ...');
 
-	var before_breakfast = '0 30 8 * * *'; //everyday at 8:30am
-	schedule.scheduleJob(before_breakfast, function(){
-	  console.log('8:30pm');
-	});	
+	var before_breakfast = '0 40 21 * * *'; //everyday at 8:30am
+	schedule.scheduleJob(before_breakfast, setOffBeforeBreakfastAlarm);	
 
+	console.log('ticking for alarm');
+}
+
+function setOffBeforeBreakfastAlarm(){
+	setOffAlarm();
+	console.log('Alarm to take medicines BEFORE breakfast');
+}
+
+function setOffAlarm(){
+	console.log('buzzzzzzzzzzzz.....iiiinnnnggg......');
 }
