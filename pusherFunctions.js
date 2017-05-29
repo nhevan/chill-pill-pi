@@ -1,4 +1,5 @@
 var Pusher = require('pusher-js/node');
+var gpio = require('rpi-gpio');
 
 var channel_name = 'my-channel';
 var event_name = 'my-event';
@@ -6,7 +7,16 @@ var pusher_app_key = 'c6c89850cbcdfffb572e';
 
 function processIncomingPush(data){
 	console.log("Received new updates from server ...");
-	console.log(data);
+	console.log(data['message']);
+
+	gpio.setup(7, gpio.DIR_OUT, write);
+ 
+	function write() {
+	    gpio.write(7, true, function(err) {
+	        if (err) throw err;
+	        console.log('Written to pin');
+	    });
+	}
 }
 
 function preparePusher(){
