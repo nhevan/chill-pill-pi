@@ -5,18 +5,38 @@ var channel_name = 'my-channel';
 var event_name = 'my-event';
 var pusher_app_key = 'c6c89850cbcdfffb572e';
 
+var pin = 7;
+var delay = 500;
+var count = 0;
+var max   = 3;
+
 function processIncomingPush(data){
 	console.log("Received new updates from server ...");
-	console.log(data['message']);
+	console.log(data['cell']);
 
-	gpio.setup(7, gpio.DIR_OUT, write);
+	pin = data['cell'];
+	
+	gpio.setup(pin, gpio.DIR_OUT, blink);
+}
+
+function blink() {
+    if (count >= max) {
+        gpio.destroy(function() {
+            console.log('Closed pins, now exit');
+            count = 0;
+        });
+        return;
+    }
  
-	function write() {
-	    gpio.write(7, true, function(err) {
-	        if (err) throw err;
-	        console.log('Written to pin');
-	    });
-	}
+    setTimeout(function() {
+        gpio.write(pin, 1, off);
+        count += 1;
+    }, delay);
+}
+function off() {
+    setTimeout(function() {
+        gpio.write(pin, 0, on);
+    }, delay);
 }
 
 function preparePusher(){
