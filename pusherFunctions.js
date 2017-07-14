@@ -1,5 +1,5 @@
 var Pusher = require('pusher-js/node');
-var gpio = require('rpi-gpio');
+var triggers = require('./triggers');
 
 var channel_name = 'my-channel';
 var event_name = 'my-event';
@@ -12,31 +12,14 @@ var max   = 3;
 
 function processIncomingPush(data){
 	console.log("Received new updates from server ...");
-	console.log(data['cell']);
+	console.log(data);
+
+	if(data['type'] == 'sync'){
+		console.log('synching ...');
+		triggers.setupTriggers(data['cron_formatted_schedule']);
+	}
 
 	pin = data['cell'];
-	
-	gpio.setup(pin, gpio.DIR_OUT, blink);
-}
-
-function blink() {
-    if (count >= max) {
-        gpio.destroy(function() {
-            console.log('Closed pins, now exit');
-            count = 0;
-        });
-        return;
-    }
- 
-    setTimeout(function() {
-        gpio.write(pin, 1, off);
-        count += 1;
-    }, delay);
-}
-function off() {
-    setTimeout(function() {
-        gpio.write(pin, 0, on);
-    }, delay);
 }
 
 function preparePusher(){
