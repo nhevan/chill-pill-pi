@@ -38,6 +38,11 @@ function off() {
         gpio.write(pin, 0, on);
     }, delay);
 }
+function on() {
+    setTimeout(function() {
+        gpio.write(pin, 1, off);
+    }, delay);
+}
 
 function preparePusher(){
 	console.log('preparing pusher ...');
