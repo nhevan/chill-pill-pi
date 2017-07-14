@@ -1,9 +1,18 @@
 var schedule = require('node-schedule');
 var Pusher = require('pusher-js/node');
+var axios = require('axios');
 
 function callServerForCurrentDoses(){
-	setOffAlarm();
-	console.log('Alarm to take medicines BEFORE breakfast');
+	console.log('Sending request to server for current dose info');
+	axios.get('http://chill.dev/api/get-current-dose')
+	  .then(function (response) {
+	    
+	  })
+	  .catch(function (error) {
+	    console.log(error);
+	  });
+
+	console.log('Current dose request sent to server.');
 }
 
 function setOffAlarm(){

@@ -14,6 +14,7 @@
   "author": "NH Evan",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.2",
     "commander": "^2.9.0",
     "content-disposition": "^0.5.2",
     "express": "^4.15.2",
