@@ -19,6 +19,10 @@ function processIncomingPush(data){
 		triggers.setupTriggers(data['cron_formatted_schedule']);
 	}
 
+	if(data['type'] == 'Current Dose'){
+		console.log('incoming dose alert ...');
+	}
+
 	pin = data['cell'];
 }
 
