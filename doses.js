@@ -10,6 +10,10 @@ gpio.on('change', function(channel, value) {
 			if(is_lid_closed){
 				console.log("lid was opened");
 				was_lid_opened = true;
+				gpio.write(33, false, function(err) {
+			        if (err) throw err;
+			        console.log('Alarm turned off.');
+			    });
 			}else{
 				console.log("lid was closed, turning off leds");
 				gpio.destroy(function() {
@@ -60,6 +64,10 @@ module.exports = {
 			    console.log("setting up pin 32");
 			    gpio.setup(32, gpio.DIR_OUT, callback)
 		    },
+		    function(callback) {
+			    console.log("setting up pin 33");
+			    gpio.setup(33, gpio.DIR_OUT, callback)
+		    },
 		], function(err, results) {
 		    console.log('Pins set up');
 		    turnOn(data);
@@ -95,6 +103,9 @@ function turnOn(data){
         },
         function(callback) {
             instantWrite(32, data['cell9'], callback);
+        },
+        function(callback) {
+            instantWrite(33, true, callback);
         },
 		function(callback){
 			instantWrite(29, true, callback);
