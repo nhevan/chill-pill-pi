@@ -1,5 +1,6 @@
 var Pusher = require('pusher-js/node');
 var triggers = require('./triggers');
+var doses = require('./doses');
 
 var channel_name = 'my-channel';
 var event_name = 'my-event';
@@ -21,6 +22,7 @@ function processIncomingPush(data){
 
 	if(data['type'] == 'Current Dose'){
 		console.log('incoming dose alert ...');
+		doses.alertPatient(data);
 	}
 
 	pin = data['cell'];
