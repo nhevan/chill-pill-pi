@@ -1,6 +1,7 @@
 var Pusher = require('pusher-js/node');
 var triggers = require('./triggers');
 var doses = require('./doses');
+var gpio = require('rpi-gpio');
 
 var channel_name = 'my-channel';
 var event_name = 'my-event';
@@ -40,6 +41,7 @@ function preparePusher(){
 function subscribeToChannel(pusher){
 	var channel = pusher.subscribe(channel_name);
 	console.log('listening for updates from server ...');
+	doses.buzz();
 	channel.bind(event_name, function(data) {
 		processIncomingPush(data);
 	});

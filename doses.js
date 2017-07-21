@@ -72,6 +72,15 @@ module.exports = {
 		    console.log('Pins set up');
 		    turnOn(data);
 		});
+	},
+	buzz: function(){
+		gpio.setup(33, gpio.DIR_OUT, function(){
+			gpio.write(33, true, function(){
+				setTimeout(function() {
+					gpio.write(33, false, function(){});
+				}, 3000);
+			});
+		});
 	}
 };
 
