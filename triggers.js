@@ -4,7 +4,7 @@ var axios = require('axios');
 
 function callServerForCurrentDoses(){
 	console.log('Sending request to server for current dose info');
-	axios.get('http://chill.dev/api/get-current-dose')
+	axios.get('http://54.174.12.76/api/get-current-dose')
 	  .then(function (response) {
 	    
 	  })
