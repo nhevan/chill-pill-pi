@@ -121,6 +121,7 @@ function turnOff(){
 			console.log("send notification to Emergency contact about a missed dose.");
 		}else{
 			console.log("No need to send notification to Emergency contact.");
+			was_lid_opened = false;
 		}
         gpio.destroy(function() {
             console.log('Closed pins, now exit');
