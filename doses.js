@@ -143,9 +143,10 @@ function turnOff(){
 			console.log("No need to send notification to Emergency contact.");
 			was_lid_opened = false;
 		}
-        gpio.destroy(function() {
-            console.log('Closed pins, now exit');
-        });
+        // gpio.destroy(function() {
+        //     console.log('Closed pins, now exit');
+        // });
+        gpio.write(33, false, function(){});
     }, total_alarm_period);
 }
 
