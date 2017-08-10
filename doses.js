@@ -81,8 +81,43 @@ module.exports = {
 				}, 3000);
 			});
 		});
+		checkLEDs();
 	}
 };
+
+function turnPinOn($pin){
+	gpio.setup($pin, gpio.DIR_OUT, function(){
+		gpio.write($pin, true, function(){});
+	});
+}
+
+function turnPinOff($pin){
+	gpio.write($pin, false, function(){});
+}
+
+function checkLEDs(){
+	turnPinOn(7);
+	turnPinOn(12);
+	turnPinOn(13);
+	turnPinOn(15);
+	turnPinOn(16);
+	turnPinOn(18);
+	turnPinOn(22);
+	turnPinOn(31);
+	turnPinOn(32);
+
+	setTimeout(function(){
+		turnPinOff(7);
+		turnPinOff(12);
+		turnPinOff(13);
+		turnPinOff(15);
+		turnPinOff(16);
+		turnPinOff(18);
+		turnPinOff(22);
+		turnPinOff(31);
+		turnPinOff(32);
+	}, 3000);
+}
 
 function turnOn(data){
 	async.series([
