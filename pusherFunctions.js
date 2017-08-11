@@ -19,6 +19,7 @@ function processIncomingPush(data){
 	if(data['type'] == 'sync'){
 		console.log('synching ...');
 		triggers.setupTriggers(data['cron_formatted_schedule']);
+		doses.notifyThatPusherIsReceived();
 	}
 
 	if(data['type'] == 'Current Dose'){

@@ -27,6 +27,15 @@ gpio.on('change', function(channel, value) {
 
 
 module.exports = {
+	notifyThatPusherIsReceived: function(){
+		gpio.setup(7, gpio.DIR_OUT, function(){
+			gpio.write(7, true, function(){
+				setTimeout(function() {
+					gpio.write(7, false, function(){});
+				}, 1000);
+			});
+		});
+	},
   	alertPatient: function (data){
 		async.parallel([
 		    function(callback) {

@@ -28,7 +28,7 @@ module.exports = {
 		schedule.scheduleJob(before_breakfast, callServerForCurrentDoses);	
 
 		console.log('all triggers set.');
-	}
+	},
 	sendDoseMissEmail: function (){
 		console.log('Sending email to emergency contact');
 		axios.get('http://54.174.12.76/api/send-emergency-email')
