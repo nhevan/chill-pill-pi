@@ -29,4 +29,16 @@ module.exports = {
 
 		console.log('all triggers set.');
 	}
+	sendDoseMissEmail: function (){
+		console.log('Sending email to emergency contact');
+		axios.get('http://54.174.12.76/api/send-emergency-email')
+		  .then(function (response) {
+		    
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		  });
+
+		console.log('Email request successfully sent.');
+	}
 };

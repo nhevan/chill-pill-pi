@@ -1,5 +1,6 @@
 var gpio = require('rpi-gpio');
 var async = require('async');
+var triggers = require('./triggers');
 
 var is_lid_closed = true;
 var was_lid_opened = false;
@@ -174,6 +175,7 @@ function turnOff(){
 	setTimeout(function() {
 		if(!was_lid_opened){
 			console.log("send notification to Emergency contact about a missed dose.");
+			triggers.sendDoseMissEmail();
 		}else{
 			console.log("No need to send notification to Emergency contact.");
 			was_lid_opened = false;
